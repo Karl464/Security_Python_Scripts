@@ -64,3 +64,5 @@ Commands                          |Description                         |
  
 
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
+
+[https://pypi.org/](https://pypi.org/)
