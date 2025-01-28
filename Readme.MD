@@ -18,20 +18,25 @@ Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
 
 2. Activate the Virtual Environment:
     ```sh
-    myenv\Scripts\activate
+    .\.myenv\Scripts\activate
 
-3. Validate the Virtual Environment:
+3. Validate the Virtual Environment path:
+
+    ```sh
+    python -c "import sys; print(sys.executable)"
+
+4. Validate the Virtual Environment content:
 
     ```sh
     python -m pip list
 
-4. Deactivate the Virtual Environment:
+5. Deactivate the Virtual Environment:
 
     ```sh
     deactivate
 
 
-5. Delete the Virtual Environment: Simply delete the myenv directory:
+6. Delete the Virtual Environment: Simply delete the myenv directory:
 
     ```sh
     rmdir /s /q myenv
@@ -49,18 +54,23 @@ Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
     source myenv/bin/activate
 
 
-3. Validate the Virtual Environment:
+3. Validate the Virtual Environment path:
 
     ```sh
-    python -m pip list
+    python3 -c "import sys; print(sys.executable)"
 
-4. Deactivate the Virtual Environment:
+4. Validate the Virtual Environment content:
+
+    ```sh
+    python3 -m pip list
+
+5. Deactivate the Virtual Environment:
 
     ```sh
     deactivate
 
 
-5. Delete the Virtual Environment: Simply delete the myenv directory:
+6. Delete the Virtual Environment: Simply delete the myenv directory:
 
     ```sh
     rm -rf myenv
