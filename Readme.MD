@@ -67,15 +67,15 @@ Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
 
 
 
-## Install dependencies
+# Install dependencies
 In order to use the scripts you will need to install dependencies. Just install the dependencies required for the script you required.
 
-### Net Scanner - Scapy
+## Net Scanner - Scapy
 [https://scapy.net/](https://scapy.net/)
     
     pip  install  scapy
 
-### Web Scraping
+## Web Scraping
 
 [https://pypi.org/project/requests/](https://pypi.org/project/requests/)
     
@@ -89,16 +89,16 @@ In order to use the scripts you will need to install dependencies. Just install 
 
     pip  install  lxml
 
-### Windows WMI
+## Windows WMI
 
     pip  install WMI
 
-### Colorama
+## Colorama
 
     pip install colorama
 
 
-## Useful pip commands
+# Useful pip commands
 Reference: https://pip.pypa.io/en/stable/cli/pip/
 
 
