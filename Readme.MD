@@ -1,29 +1,70 @@
 # General description
-Current script are related to security activities, like, web scraping, sniffing, socket connection, fuzzer, or similar activities.
+Current scripts are related to security activities, like, web scraping, sniffing, socket connection, fuzzer, or similar activities.
 
 Please be aware that some of current code will work only on windows (ex. WMI) and other only on Linux (ex. fuzzer), and some of them in both enviroment.
 
-# Environment preparation
+# Managing Python Virtual Environments
 
-## Create a virtual environment
-To star it is recommended to create a virtual environment before installing the required dependencies
+Is recommended to create a virtual environment before installing the required dependencies, As this will help to avoid dependency problems when working with multiple projects.
 
 Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
 
-### macOS/Linux 
 
-> python3 -m even .venv 
+## Windows
 
-You may need to run first (Ex. Debian-based OSs):
- > sudo apt-get install python3-ven
+1. **Create a Virtual Environment:**
+   ```sh
+   python -m venv myenv
+
+2. Activate the Virtual Environment:
+    ```sh
+    myenv\Scripts\activate
+
+3. Validate the Virtual Environment:
+
+    ```sh
+    python -m pip list
+
+4. Deactivate the Virtual Environment:
+
+    ```sh
+    deactivate
 
 
-### Windows 
+5. Delete the Virtual Environment: Simply delete the myenv directory:
 
-> python -m venv .venv 
+    ```sh
+    rmdir /s /q myenv
 
-You can also use 
-> py -3 -m venv .venv
+
+## Linux/macOS
+
+1. **Create a Virtual Environment:**
+   ```sh
+   python3 -m venv myenv
+
+
+2. Activate the Virtual Environment:
+    ```sh
+    source myenv/bin/activate
+
+
+3. Validate the Virtual Environment:
+
+    ```sh
+    python -m pip list
+
+4. Deactivate the Virtual Environment:
+
+    ```sh
+    deactivate
+
+
+5. Delete the Virtual Environment: Simply delete the myenv directory:
+
+    ```sh
+    rm -rf myenv
+
 
 
 ## Install dependencies
@@ -31,34 +72,42 @@ In order to use the scripts you will need to install dependencies. Just install 
 
 ### Net Scanner - Scapy
 [https://scapy.net/](https://scapy.net/)
-> pip  install  scapy
+    
+    pip  install  scapy
 
 ### Web Scraping
 
 [https://pypi.org/project/requests/](https://pypi.org/project/requests/)
-> pip  install  requests
+    
+    pip  install  requests
 
 [https://pypi.org/project/beautifulsoup4/](https://pypi.org/project/beautifulsoup4/)
-> pip  install beautifulsoup4
+
+    pip  install beautifulsoup4
 
 [https://pypi.org/project/lxml/](https://pypi.org/project/lxml/)
-> pip  install  lxml
+
+    pip  install  lxml
 
 ### Windows WMI
-> pip  install WMI
+
+    pip  install WMI
 
 ### Colorama
-> pip install colorama
+
+    pip install colorama
 
 
 ## Useful pip commands
 Reference: https://pip.pypa.io/en/stable/cli/pip/
-Commands                          |Description                         |
--------------------------------|-----------------------------|
-`pip  install <package>`  |Install Package            |
-`pip  list | findstr "droz"` |Find installed package            |
-`pip show <package  name>`  |Show information of package            |
- 
+
+
+| Description | Commands |
+|----------|----------|
+| Install Package                |  pip  install &lt;package &gt;  |
+| Find installed package         |  pip  list &#124; findstr "&lt;package &gt;" |
+| Show information of package    |  pip  show &lt;package &gt;  |
+
 
 # References
  
