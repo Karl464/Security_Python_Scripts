@@ -14,11 +14,11 @@ Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
 
 1. **Create a Virtual Environment:**
    ```sh
-   python -m venv myenv
+   python.exe -m venv myenv
 
 2. Activate the Virtual Environment:
     ```sh
-    .\.myenv\Scripts\activate
+    .\myenv\Scripts\Activate.ps1
 
 3. Validate the Virtual Environment path:
 
