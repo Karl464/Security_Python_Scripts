@@ -108,6 +108,13 @@ In order to use the scripts you will need to install dependencies. Just install 
     pip install colorama
 
 
+##  use certificates from the default system store
+
+[https://pypi.org/project/pip-system-certs/](https://pypi.org/project/pip-system-certs/)
+
+    pip install pip-system-certs
+
+
 # Useful pip commands
 Reference: https://pip.pypa.io/en/stable/cli/pip/
 
