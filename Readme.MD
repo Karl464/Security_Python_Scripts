@@ -107,6 +107,12 @@ In order to use the scripts you will need to install dependencies. Just install 
 
     pip install colorama
 
+## Jupyter
+
+    pip install notebook
+
+Install the Jupyter Extension: Open VS Code, navigate to the Extensions view (Ctrl+Shift+X), search for "Jupyter," and install the official extension provided by Microsoft.
+
 
 ##  use certificates from the default system store
 
@@ -132,3 +138,4 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
