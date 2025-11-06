@@ -15,6 +15,12 @@ Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
 1. **Create a Virtual Environment:**
    ```sh
    python.exe -m venv myenv
+   ```
+
+   ```sh
+   & "C:\Python\Python-3.x.x\python.exe" -m venv myenv
+   ```
+
 
 2. Activate the Virtual Environment:
     ```sh
@@ -138,4 +144,5 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
