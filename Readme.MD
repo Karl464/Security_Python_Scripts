@@ -7,8 +7,9 @@ Please be aware that some of current code will work only on windows (ex. WMI) an
 
 Is recommended to create a virtual environment before installing the required dependencies, As this will help to avoid dependency problems when working with multiple projects.
 
-Reference: https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
-
+References: 
+* https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
+* https://code.visualstudio.com/docs/python/environments
 
 ## Windows
 
@@ -144,5 +145,6 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
 
