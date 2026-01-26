@@ -137,6 +137,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 | Install Package                |  pip  install &lt;package &gt;  |
 | Find installed package         |  pip  list &#124; findstr "&lt;package &gt;" |
 | Show information of package    |  pip  show &lt;package &gt;  |
+| Capture installed packages     |  pip freeze &gt; requirements.txt  |
 
 
 # References
@@ -145,6 +146,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
 
 
