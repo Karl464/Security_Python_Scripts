@@ -1,163 +1,101 @@
-# General description
-Current scripts are related to security activities, like, web scraping, sniffing, socket connection, fuzzer, or similar activities.
 
-Please be aware that some of current code will work only on windows (ex. WMI) and other only on Linux (ex. fuzzer), and some of them in both enviroment.
+# General Description
 
-# Managing Python Virtual Environments
+Current scripts are related to security activities, such as web scraping, sniffing, socket connections, fuzzers, and similar tasks.
 
-Is recommended to create a virtual environment before installing the required dependencies, As this will help to avoid dependency problems when working with multiple projects.
+## Platform Compatibility
 
-References: 
-* https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s
-* https://code.visualstudio.com/docs/python/environments
+| Platform | Script Types |
+|----------|--------------|
+| **Windows Only** | Scripts using WMI |
+| **Linux Only** | Specific fuzzer scripts |
+| **Cross-Platform** | Most web scraping and socket scripts |
 
-## Windows
+----------
 
-1. **Create a Virtual Environment:**
-   ```sh
-   # General command, assuming the desired python version is the active one in your shell
-   python.exe -m venv myenv
-   # or
-   & "C:\Python\Python-3.x.x\python.exe" -m venv myenv
+# Python Version & Environment Management
 
-   # Or for Windows, using the launcher to specify the exact version
-   py -0                        # (Zero, not O) Lists all installed Python versions
-   py -3.10 -m venv myenv
-   ```
+It is highly recommended to use a **Virtual Environment** to avoid dependency conflicts. Since this system has multiple Python versions installed (3.11, 3.13, and 3.14), use the commands below to ensure you are targeting the correct version.
 
+## 1. Version Identification (Windows)
 
-2. Activate the Virtual Environment:
-    ```sh
-    .\myenv\Scripts\Activate.ps1
+[Python Releases for Windows | Python.org](https://www.python.org/downloads/windows/)
 
-3. Validate the Virtual Environment path:
+Before creating an environment, verify your installed versions and their exact paths.
 
-    ```sh
-    python -c "import sys; print(sys.executable)"
+| Action | Command |
+|--------|---------|
+| List all installed versions | `py -0` |
+| List full folder paths (Patch level) | `py --list-paths` |
+| Check specific patch (e.g., 3.11.9) | `py -3.11 --version` |
 
-4. Validate the Virtual Environment content:
+## 2. Virtual Environment Lifecycle
 
-    ```sh
-    python -m pip list
+### A. Create the Environment
 
-5. Deactivate the Virtual Environment:
+| Platform | Command |
+|----------|---------|
+| **Windows** | `python.exe -m venv myenv` |
+| **Windows (Target 3.11)** | `py -3.11 -m venv myenv` |
+| **Windows (Full Path)** | `& "C:\Python\Python-3.x.x\python.exe" -m venv myenv` |
+| **Linux/macOS** | `python3 -m venv myenv` |
 
-    ```sh
-    deactivate
+### B. Activate the Environment
 
+| Platform | Command |
+|----------|---------|
+| **Windows (PowerShell)** | `.\myenv\Scripts\Activate.ps1` |
+| **Windows (CMD)** | `.\myenv\Scripts\activate.bat` |
+| **Linux/macOS** | `source myenv/bin/activate` |
 
-6. Delete the Virtual Environment: Simply delete the myenv directory:
+### C. Validate & Cleanup
 
-    ```sh
-    rmdir /s /q myenv
+| Action | Command |
+|--------|---------|
+| **Validate Path** | `python -c "import sys; print(sys.executable)"` |
+| **Validate Content** | `python -m pip list` |
+| **Deactivate** | `deactivate` |
+| **Delete (Windows)** | `rmdir /s /q myenv` |
+| **Delete (Linux)** | `rm -rf myenv` |
 
+----------
 
-## Linux/macOS
+# Dependency Installation
 
-1. **Create a Virtual Environment:**
-   ```sh
-   python3 -m venv myenv
+Install only the dependencies required for the specific script you are running.
 
+| Category | Package | Installation Command |
+|----------|---------|---------------------|
+| **Net Scanner** | Scapy | `pip install scapy` |
+| **Web Scraping** | Requests, BeautifulSoup4, lxml | `pip install requests beautifulsoup4 lxml` |
+| **Windows Specific** | WMI | `pip install WMI` |
+| **Utilities** | Colorama | `pip install colorama` |
+| **Development** | Jupyter | `pip install notebook` |
+| **Certificates** | System Certs | `pip install pip-system-certs` |
 
-2. Activate the Virtual Environment:
-    ```sh
-    source myenv/bin/activate
+**Note:** For Jupyter, install the "Jupyter" extension in VS Code (Ctrl+Shift+X).
 
+----------
 
-3. Validate the Virtual Environment path:
+# Useful pip & py Commands Reference
 
-    ```sh
-    python3 -c "import sys; print(sys.executable)"
+| Description | Command |
+|-------------|---------|
+| **Find package** | `pip list \| findstr "<package>"` |
+| **Show package info** | `pip show <package>` |
+| **Export requirements** | `pip freeze > requirements.txt` |
+| **Install from file** | `pip install -r requirements.txt` |
+| **Targeted Install** | `py -3.11 -m pip install <package>` |
+| **Run Script (3.11)** | `py -3.11 myscript.py` |
+| **Run Django (3.11)** | `py -3.11 manage.py runserver` |
 
-4. Validate the Virtual Environment content:
-
-    ```sh
-    python3 -m pip list
-
-5. Deactivate the Virtual Environment:
-
-    ```sh
-    deactivate
-
-
-6. Delete the Virtual Environment: Simply delete the myenv directory:
-
-    ```sh
-    rm -rf myenv
-
-
-
-# Install dependencies
-In order to use the scripts you will need to install dependencies. Just install the dependencies required for the script you required.
-
-## Net Scanner - Scapy
-[https://scapy.net/](https://scapy.net/)
-    
-    pip  install  scapy
-
-## Web Scraping
-
-[https://pypi.org/project/requests/](https://pypi.org/project/requests/)
-    
-    pip  install  requests
-
-[https://pypi.org/project/beautifulsoup4/](https://pypi.org/project/beautifulsoup4/)
-
-    pip  install beautifulsoup4
-
-[https://pypi.org/project/lxml/](https://pypi.org/project/lxml/)
-
-    pip  install  lxml
-
-## Windows WMI
-
-    pip  install WMI
-
-## Colorama
-
-    pip install colorama
-
-## Jupyter
-
-    pip install notebook
-
-Install the Jupyter Extension: Open VS Code, navigate to the Extensions view (Ctrl+Shift+X), search for "Jupyter," and install the official extension provided by Microsoft.
-
-
-##  use certificates from the default system store
-
-[https://pypi.org/project/pip-system-certs/](https://pypi.org/project/pip-system-certs/)
-
-    pip install pip-system-certs
-
-
-# Useful pip/py commands
-Reference: https://pip.pypa.io/en/stable/cli/pip/
-
-
-| Description | Commands |
-|----------|----------|
-| Find installed package         |  pip  list &#124; findstr "&lt;package &gt;" |
-| Show information of package    |  pip  show &lt;package &gt;  |
-| Capture installed packages     |  pip freeze &gt; requirements.txt  |
-| Install Package                |  pip  install &lt;package &gt;  |
-| Install Package from file      |  pip  install -r requirements.txt  |
-| Installs a library only for Python 3.11      |  py -3.11 -m pip install &lt;package&gt;  |
-| Runs script with Python 3.11      |  py -3.11 myscript.py  |
-| Runs Django/Python project with Python 3.11.     |  py -3.11 manage.py runserver  |
-
+----------
 
 # References
- 
 
-[https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
-
-[https://pypi.org/](https://pypi.org/)
-
-
-
-
-
-
-
-
+| Resource | Link |
+|----------|------|
+| **YouTube Tutorial** | [Python Virtual Environments](https://www.youtube.com/watch?v=GZbeL5AcTgw&t=121s) |
+| **VS Code Docs** | [Python Environments](https://code.visualstudio.com/docs/python/environments) |
+| **Real Python Guide** | [Running Scripts](https://realpython.com/run-python-scripts/) |
+| **Package Index** | [PyPI](https://pypi.org/) |
