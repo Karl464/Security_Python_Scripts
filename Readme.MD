@@ -90,6 +90,25 @@ Install only the dependencies required for the specific script you are running.
 | **Run Script (3.11)** | `py -3.11 myscript.py` |
 | **Run Django (3.11)** | `py -3.11 manage.py runserver` |
 
+## Problem
+
+If you see this error:
+```
+Error al ejecutar el programa 'pip.exe': Una directiva de Control de aplicaciones bloqueó este archivo
+```
+Your system has **Application Control Policies** (AppLocker/SmartScreen) that block `pip.exe`, but `python.exe` is allowed. Running pip as a Python module (`python -m pip`) executes through the allowed `python.exe`.
+
+## Solution
+
+**Always use `python -m pip` instead of `pip`**
+
+| Blocked Command | Working Alternative |
+|-----------------|---------------------|
+| `pip list` | `python -m pip list` |
+| `pip install <package>` | `python -m pip install <package>` |
+| `pip freeze` | `python -m pip freeze` |
+| `pip show <package>` | `python -m pip show <package>` |
+
 ----------
 
 # References
@@ -100,4 +119,5 @@ Install only the dependencies required for the specific script you are running.
 | **VS Code Docs** | [Python Environments](https://code.visualstudio.com/docs/python/environments) |
 | **Real Python Guide** | [Running Scripts](https://realpython.com/run-python-scripts/) |
 | **Package Index** | [PyPI](https://pypi.org/) |
+
 
