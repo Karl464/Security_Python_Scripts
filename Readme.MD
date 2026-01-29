@@ -15,11 +15,13 @@ References:
 
 1. **Create a Virtual Environment:**
    ```sh
+   # General command, assuming the desired python version is the active one in your shell
    python.exe -m venv myenv
-   ```
-
-   ```sh
+   # or
    & "C:\Python\Python-3.x.x\python.exe" -m venv myenv
+
+   # Or for Windows, using the launcher to specify the exact version
+   py -3.10 -m venv myenv
    ```
 
 
@@ -147,6 +149,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
 
 
