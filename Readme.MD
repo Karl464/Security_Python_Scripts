@@ -47,6 +47,7 @@ Before creating an environment, verify your installed versions and their exact p
 | **Windows (PowerShell)** | `.\myenv\Scripts\Activate.ps1` |
 | **Windows (CMD)** | `.\myenv\Scripts\activate.bat` |
 | **Linux/macOS** | `source myenv/bin/activate` |
+| **visual studio code** | `>Python: Select Interpreter` 
 
 ### C. Validate & Cleanup
 
@@ -99,3 +100,4 @@ Install only the dependencies required for the specific script you are running.
 | **VS Code Docs** | [Python Environments](https://code.visualstudio.com/docs/python/environments) |
 | **Real Python Guide** | [Running Scripts](https://realpython.com/run-python-scripts/) |
 | **Package Index** | [PyPI](https://pypi.org/) |
+
