@@ -21,6 +21,7 @@ References:
    & "C:\Python\Python-3.x.x\python.exe" -m venv myenv
 
    # Or for Windows, using the launcher to specify the exact version
+   py -0                        # (Zero, not O) Lists all installed Python versions
    py -3.10 -m venv myenv
    ```
 
@@ -130,7 +131,7 @@ Install the Jupyter Extension: Open VS Code, navigate to the Extensions view (Ct
     pip install pip-system-certs
 
 
-# Useful pip commands
+# Useful pip/py commands
 Reference: https://pip.pypa.io/en/stable/cli/pip/
 
 
@@ -141,6 +142,9 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 | Capture installed packages     |  pip freeze &gt; requirements.txt  |
 | Install Package                |  pip  install &lt;package &gt;  |
 | Install Package from file      |  pip  install -r requirements.txt  |
+| Installs a library only for Python 3.11      |  py -3.11 -m pip install &lt;package&lt;  |
+| Runs script with Python 3.11      |  py -3.11 myscript.py  |
+| Runs Django/Python project with Python 3.11.     |  py -3.11 manage.py runserver  |
 
 
 # References
@@ -149,6 +153,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
 
 
