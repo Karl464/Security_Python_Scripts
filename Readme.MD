@@ -142,7 +142,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 | Capture installed packages     |  pip freeze &gt; requirements.txt  |
 | Install Package                |  pip  install &lt;package &gt;  |
 | Install Package from file      |  pip  install -r requirements.txt  |
-| Installs a library only for Python 3.11      |  py -3.11 -m pip install &lt;package&lt;  |
+| Installs a library only for Python 3.11      |  py -3.11 -m pip install &lt;package&gt;  |
 | Runs script with Python 3.11      |  py -3.11 myscript.py  |
 | Runs Django/Python project with Python 3.11.     |  py -3.11 manage.py runserver  |
 
@@ -153,6 +153,7 @@ Reference: https://pip.pypa.io/en/stable/cli/pip/
 [https://realpython.com/run-python-scripts/](https://realpython.com/run-python-scripts/)
 
 [https://pypi.org/](https://pypi.org/)
+
 
 
 
