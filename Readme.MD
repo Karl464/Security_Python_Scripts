@@ -96,6 +96,8 @@ If you see this error:
 ```
 Error al ejecutar el programa 'pip.exe': Una directiva de Control de aplicaciones bloqueó este archivo
 ```
+[Smart App Control Has Blocked Part of This App - Microsoft Support](https://support.microsoft.com/en-us/windows/smart-app-control-has-blocked-part-of-this-app-0729fff1-48bf-4b25-aa97-632fe55ccca2)
+
 Your system has **Application Control Policies** (AppLocker/SmartScreen) that block `pip.exe`, but `python.exe` is allowed. Running pip as a Python module (`python -m pip`) executes through the allowed `python.exe`.
 
 ## Solution
@@ -119,5 +121,6 @@ Your system has **Application Control Policies** (AppLocker/SmartScreen) that bl
 | **VS Code Docs** | [Python Environments](https://code.visualstudio.com/docs/python/environments) |
 | **Real Python Guide** | [Running Scripts](https://realpython.com/run-python-scripts/) |
 | **Package Index** | [PyPI](https://pypi.org/) |
+
 
 
