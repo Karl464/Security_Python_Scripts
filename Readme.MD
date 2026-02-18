@@ -71,7 +71,7 @@ Install only the dependencies required for the specific script you are running.
 | **Web Scraping** | Requests, BeautifulSoup4, lxml | `pip install requests beautifulsoup4 lxml` |
 | **Windows Specific** | WMI | `pip install WMI` |
 | **Utilities** | Colorama | `pip install colorama` |
-| **Development** | Jupyter | `pip install notebook` |
+| **Development** | Jupyter | `pip install notebook jupyter ipywidgets` |
 | **Certificates** | System Certs | `pip install pip-system-certs` |
 
 **Note:** For Jupyter, install the "Jupyter" extension in VS Code (Ctrl+Shift+X).
@@ -121,6 +121,7 @@ Your system has **Application Control Policies** (AppLocker/SmartScreen) that bl
 | **VS Code Docs** | [Python Environments](https://code.visualstudio.com/docs/python/environments) |
 | **Real Python Guide** | [Running Scripts](https://realpython.com/run-python-scripts/) |
 | **Package Index** | [PyPI](https://pypi.org/) |
+
 
 
 
