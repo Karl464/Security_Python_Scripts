@@ -18,9 +18,9 @@ It is highly recommended to use a **Virtual Environment** to avoid dependency co
 
 ## 1. Version Identification
 
-### Find the Python Binary Path
+Start here to discover what Python is installed and which binary is actually being invoked — before creating environments or changing anything.
 
-Before anything else, know *which* Python binary is actually being invoked.
+### Find the Active Python Binary
 
 #### From inside a script or REPL
 
@@ -41,7 +41,7 @@ print(sys.executable)
 #### Common default installation paths
 
 | OS | Typical Path |
-|----|----|
+|----|---|
 | **Windows** | `C:\Users\<Username>\AppData\Local\Programs\Python\Python3x\python.exe` |
 | **macOS** | `/usr/local/bin/python3` or `/usr/bin/python3` |
 | **Linux** | `/usr/bin/python3` |
@@ -59,82 +59,97 @@ print(sys.executable)
 
 [Python Releases for Windows | Python.org](https://www.python.org/downloads/windows/)
 
-Verify installed versions and their exact paths before creating environments.
-
 | Action | Command |
 | :--- | :--- |
 | List all installed versions | `py -0` |
 | List full folder paths (patch level) | `py --list-paths` |
 | Check specific patch level (e.g., 3.11.9) | `py -3.11 --version` |
-| Set the default Python version — create or edit **`py.ini`** <br> - **User**: `%LOCALAPPDATA%\py.ini` <br> - **System**: `%PROGRAMDATA%\py.ini` | `notepad $env:LOCALAPPDATA\py.ini` <br> `notepad $env:PROGRAMDATA\py.ini` <br><br>**Set content:**<br>`[defaults]`<br>`python=3.11` |
 
 ---
 
-## 2. Version Execution Priority
+## 2. Controlling Version Priority
 
-Understanding how Windows resolves which Python runs when you type `python` vs `py` is essential for reproducible environments.
+Once you know what is installed, use these two independent mechanisms to control which version runs. They work on different layers and can be combined.
 
-### How `python` is Resolved — PATH Order
+### Mechanism A — PATH (controls the `python` command)
 
-Windows searches directories in `PATH` order. The **first folder** containing `python.exe` wins.
-
-**Example:**
+Windows searches `PATH` directories in order. The **first folder** containing `python.exe` wins.
 
 ```
 C:\Python\Python311\   ← listed first → python --version → 3.11
-C:\Python\Python314\   ← listed second (ignored)
+C:\Python\Python314\   ← listed second (ignored for plain `python`)
 ```
 
-If 3.14 is listed above 3.11, then `python --version` returns 3.14.
+#### Setting Global Priority via PATH (Windows)
 
-**Verify what PATH resolves:**
+1. Open **System Properties → Environment Variables**.
+2. Under *User variables*, select **Path** and click **Edit**.
+3. Move the Python version entries (e.g. 3.11) **above** the `WindowsApps` entry (and above any other Python version):
 
-```powershell
-where python          # All matches, in resolution order
-(Get-Command python).Source   # First match only
-```
+    ```
+    C:\Users\<user>\AppData\Local\Programs\Python\Python311\
+    C:\Users\<user>\AppData\Local\Programs\Python\Python311\Scripts\
+    ```
 
-### How `py` is Resolved — py Launcher + py.ini
+4. Click OK, then **restart CMD / PowerShell**.
+5. Verify:
+
+    ```powershell
+    python --version   # → Python 3.11.x
+    where python       # Confirms correct path is first
+    ```
+
+> ⚠️ **WindowsApps stub:** `C:\Users\<user>\AppData\Local\Microsoft\WindowsApps\python.exe` is not a real interpreter — it is a Store redirect that opens the Microsoft Store when invoked. If this path appears above your real Python install in PATH, typing `python` will open the Store instead of running a script. Always ensure your Python 3.11 entries sit above it.
+
+---
+
+### Mechanism B — py.ini (controls the `py` launcher)
 
 The `py` launcher is **independent of PATH** and reads its default from:
 
-- `%LOCALAPPDATA%\py.ini` — user-specific
+- `%LOCALAPPDATA%\py.ini` — user-specific (recommended)
 - `%PROGRAMDATA%\py.ini` — system-wide
 
-**Example `py.ini`:**
+**Open and set the default:**
+
+```powershell
+notepad $env:LOCALAPPDATA\py.ini
+```
 
 ```ini
 [defaults]
 python=3.11
 ```
 
-**With this config:**
+**Result:**
 
 ```powershell
-py --version     # → Python 3.11  (from py.ini default)
+py --version     # → Python 3.11  (from py.ini)
 py -3.13         # → Python 3.13  (explicit override)
 py -3.14         # → Python 3.14  (explicit override)
 ```
 
-### Priority Summary Table
+---
 
-| Command | Who Decides | How to Control |
-|---------|-------------|----------------|
-| `python` | PATH order | Move desired version's folder above others in PATH |
-| `py` | `py.ini` | Edit `py.ini` to set default version |
-| `py -3.11` | Explicit | Always runs Python 3.11, ignores py.ini |
-| `py -3.14` | Explicit | Always runs Python 3.14, ignores py.ini |
+### Priority Summary
 
-> ✅ **Key takeaway:** PATH controls `python`. `py.ini` controls `py`. Use both together for predictable, reproducible setups.
+| Command | Controlled By | How to Change (e.g. 3.11)|
+|---------|--------------|---------------|
+| `python` | PATH order | Move Python 3.11 entries above others in PATH |
+| `py` | `py.ini` | Set `python=3.11` in `py.ini` |
+| `py -3.11` | Explicit flag | Always 3.11, ignores py.ini |
+| `py -3.14` | Explicit flag | Always 3.14, ignores py.ini |
+
+> ✅ **Key takeaway:** PATH controls `python`. `py.ini` controls `py`. Set both for a fully predictable environment — then use explicit `py -3.x` flags in scripts to be unambiguous regardless of machine config.
 
 ### Recommendations
 
-- **Reproducibility baseline:** Set `py.ini` default to 3.11 — ensures known-good tool compatibility (e.g., APKiD).
-- **Optional PATH adjustment:** If you also want `python` to resolve to 3.11, move 3.11's folder above 3.14 in System PATH.
-- **Documentation for juniors:**
-  - `python` → whichever version PATH points to (you control this).
+- **Reproducibility baseline:** Set `py.ini` default to 3.11 and move 3.11 to the top of PATH — ensures known-good tool compatibility (e.g., APKiD).
+- **Scripts for juniors:** Always use `py -3.11 myscript.py` explicitly rather than relying on defaults. It works regardless of the machine's PATH or py.ini state.
+- **Quick reference for juniors:**
+  - `python` → whichever version PATH points to (you decide).
   - `py` → 3.11 (set in py.ini).
-  - `py -3.14` → always 3.14, regardless of defaults.
+  - `py -3.14` → always 3.14, no matter what.
 
 ---
 
