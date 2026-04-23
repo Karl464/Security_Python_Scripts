@@ -28,6 +28,7 @@ Before creating an environment, verify your installed versions and their exact p
 | List all installed versions | `py -0` |
 | List full folder paths (Patch level) | `py --list-paths` |
 | Check specific patch (e.g., 3.11.9) | `py -3.11 --version` |
+| Setting the Default Python Version. Create or edit **`py.ini`** <br> - **User**: `%LOCALAPPDATA%\py.ini` <br> - **System**: `%PROGRAMDATA%\py.ini` | -  `notepad $env:LOCALAPPDATA\py.ini` <br> -  `notepad $env:%PROGRAMDATA%\py.ini`  <pre><code>[defaults]<br>python=3.11</code></pre>|
 
 ## 2. Virtual Environment Lifecycle
 
