@@ -185,6 +185,104 @@ py -3.14         # → Python 3.14  (explicit override)
 
 ----------
 
+# Wrapper Batch Files for Global Tool Access
+
+Use wrapper `.bat` files to make tools installed inside a venv (e.g. Frida, Objection, APKiD) globally accessible from any terminal — no venv activation, no Python PATH changes.
+
+> 👉 **Key takeaway:** venvs hold the real executables — wrappers make them globally accessible. PATH only needs your single neutral `bin` folder, not every venv.
+
+## Folder Structure
+
+| Folder | In PATH? | Purpose |
+|--------|----------|---------|
+| `C:\Users\<user>\Documents\Desarrollos\mobilesec\` | No | venv storage — holds real executables |
+| `C:\Tools\MobileSec\bin\` | **Yes** | Only `.bat` wrappers go here |
+
+## Step-by-Step Setup
+
+**1. Create the venv (use explicit Python version)**
+
+```powershell
+py -3.11 -m venv mobilesec\myenv
+```
+
+**2. Activate and install the tool**
+
+```powershell
+mobilesec\myenv\Scripts\activate
+pip install frida-tools
+```
+
+**3. Confirm the executable path**
+
+```powershell
+(Get-Command frida).Source
+# → C:\Users\<user>\Documents\Desarrollos\mobilesec\myenv\Scripts\frida.exe
+```
+
+**4. Create the wrapper `.bat` file** — see template below.
+
+**5. Create the global bin folder and add it to PATH**
+
+```powershell
+mkdir C:\Tools\MobileSec\bin
+
+# Add to user PATH (no admin needed)
+$p = [Environment]::GetEnvironmentVariable('Path','User')
+[Environment]::SetEnvironmentVariable('Path', $p + ';C:\Tools\MobileSec\bin', 'User')
+
+# Restart terminal, then verify
+$env:PATH -split ';' | Select-String 'MobileSec'
+```
+
+**6. Copy wrappers to the bin folder**
+
+```powershell
+copy frida.bat      C:\Tools\MobileSec\bin\
+copy objection.bat  C:\Tools\MobileSec\bin\
+copy apkid.bat      C:\Tools\MobileSec\bin\
+```
+
+**7. Test from any terminal**
+
+```powershell
+frida --version      # → 17.x.x
+objection --help
+apkid --version
+```
+
+## Wrapper Template
+
+Copy, rename to `<TOOL_NAME>.bat`, and update the two paths. Only the executable name changes per tool.
+
+```bat
+@echo off
+rem ──────────────────────────────────────────────────────────────────────────
+rem  WRAPPER : <TOOL_NAME>
+rem  Package : pip install <package-name>
+rem  Venv    : C:\Users\<user>\Documents\Desarrollos\<PROJECT>\myenv
+rem  Bin     : C:\Tools\MobileSec\bin\<TOOL_NAME>.bat   ← this file's location
+rem  Usage   : <TOOL_NAME> [args]
+rem ──────────────────────────────────────────────────────────────────────────
+C:\Users\<user>\Documents\Desarrollos\<PROJECT>\myenv\Scripts\<TOOL_NAME>.exe %*
+```
+
+> ⚠️ **`%*` is mandatory** — it passes through all arguments the user types (e.g. `--version`, `-U -n com.app`). Never omit it.
+
+## Common Tools Reference
+
+| Wrapper file | pip package | Python | Notes |
+|---|---|---|---|
+| `frida.bat` | `frida-tools` | 3.11 | Dynamic instrumentation |
+| `objection.bat` | `objection` | 3.11 | Runtime mobile exploration |
+| `apkid.bat` | `apkid` | **3.11 ⚠️** | Requires 3.11 specifically |
+| `drozer.bat` | `drozer` | 3.11 | Android attack framework |
+| `semgrep.bat` | `semgrep` | 3.11 | Static analysis / SAST |
+| `jadx.bat` | *(standalone jar)* | — | Point `.bat` at jadx shell script |
+| `apktool.bat` | *(standalone jar)* | — | Point `.bat` at apktool wrapper |
+
+----------
+
 # Dependency Installation
 
 Install only the dependencies required for the specific script you are running.
