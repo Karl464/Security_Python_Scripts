@@ -173,6 +173,8 @@ py -3.14         # → Python 3.14  (explicit override)
 | **Linux/macOS** | `source myenv/bin/activate` |
 | **VS Code** | `>Python: Select Interpreter` |
 
+> ✅ **Key takeaway:** Check PowerShell execution policy `Get-ExecutionPolicy`. Modify e.g. `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`.
+
 ### C. Validate & Cleanup
 
 | Action | Command |
